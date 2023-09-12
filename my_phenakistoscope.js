@@ -1,13 +1,19 @@
 const SLICE_COUNT = 14;
 
+let Antline = 950;
+let Antbody = 0;
+let Anthead = Antbody+15;
+let antMoveY =  0;
+let antMoveX = 0;
+let Anttail = Antbody-20;
 function setup_pScope(pScope){
-  pScope.output_mode(ANIMATED_DISK);
+  pScope.output_mode(STATIC_DISK);
   pScope.scale_for_screen(true);
-  pScope.draw_layer_boundaries(true);
+  pScope.draw_layer_boundaries(false);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
 
-  pScope.load_image("Bug","png")
+  pScope.load_image("Bug","png");
   pScope.load_image_sequence("Lizard","png",14);
 
   angleMode(DEGREES);
@@ -15,7 +21,7 @@ function setup_pScope(pScope){
 
 function setup_layers(pScope){
 
-  new PLayer(null, 148, 117, 78);  //lets us draw the whole circle background, ignoring the boundaries
+  new PLayer(null, 148, 117, 78);  
 
   var layer1 = new PLayer(Lizard);
   layer1.mode( RING );
@@ -25,9 +31,9 @@ function setup_layers(pScope){
   layer2.mode( SWIRL(2) );
   layer2.set_boundary( 0, 400 );
 
-  var layer3 = new PLayer(Ant);
-layer3.mode(RING);
-layer3.set_boundary(900,1000);
+//   var layer3 = new PLayer(Ant);
+// layer3.mode(RING);
+// layer3.set_boundary(900,1000);
 
 }
 
@@ -38,42 +44,33 @@ function Lizard(x,y,animation,pScope){
   pop();
 }
 
-function faces(x, y, animation, pScope){
-  
-  scale(animation.frame*2);
 
-  ellipse(0,0,50,50); // draw head
-  fill(30);
-  ellipse(-10,-10,10,10); //draw eye
-  ellipse(10,-10,10,10); // draw eye
-  arc(0,10,20,10,0,180); // draw mouth
+// function Ant(x, y, animation, pScope){
+//   translate(-100,Antline);
+//   translate(0, 100);
+//   fill(54, 26, 28);
+//   ellipse(Antbody+antMoveX,0+antMoveY,20,20);
+//   ellipse(Anthead+antMoveX,0+antMoveY,20,20);
+//   ellipse(Anttail+antMoveX,0+antMoveY,35,20);
 
-}
+//  if(animation.frame<0.5){
+//     antMoveY-=20;
+//   }
+//   else{
+//     antMoveY+=20;
+//     // console.log(animation.frame + ": " + antMoveY);
+//   }
 
-//function Ant(x, y, animation, pScope){
+//   antMoveX+=15;
+//   if(animation.frame==0){ 
+//   antMoveX = 0;
+//   //console.log();
+//   }
+//   //console.log(animation.frame + ": " + antMoveX);
 
-  // this is how you set up a background for a specific layer
-  //let angleOffset = (360 / SLICE_COUNT) / 2
-  // let backgroundArcStart = 270 - angleOffset;
-  // let backgroundArcEnd = 270 + angleOffset;
-
-  
-
- // fill(255)
- // rect(-10,-300-animation.wave()*50,20,20) // .wave is a cosine wave btw
-//}
-
-function Ant(x, y, animation, pScope){
-  fill(54, 26, 28)
-  ellipse(100,950,20,20)
-  ellipse(115,950,20,20)
-  ellipse(80,950,35,20)
-}
+// }
   function Bug(x,y, animation, pScope){
-   /*let angleOffset = (360 / SLICE_COUNT) / 2
-    let backgroundArcStart = 270 - angleOffset;
-    let backgroundArcEnd = 270 + angleOffset;*/
-    pScope.draw_image("Bug",x,y)
+  pScope.draw_image("Bug",x,y);
 
   
 }
