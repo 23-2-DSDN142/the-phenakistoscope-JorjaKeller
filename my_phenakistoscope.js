@@ -7,7 +7,7 @@ let antMoveY =  0;
 let antMoveX = 0;
 let Anttail = Antbody-20;
 function setup_pScope(pScope){
-  pScope.output_mode(STATIC_DISK);
+  pScope.output_mode(ANIMATED_DISK);
   pScope.scale_for_screen(true);
   pScope.draw_layer_boundaries(false);
   pScope.set_direction(CCW);
@@ -31,9 +31,9 @@ function setup_layers(pScope){
   layer2.mode( SWIRL(2) );
   layer2.set_boundary( 0, 400 );
 
-//   var layer3 = new PLayer(Ant);
-// layer3.mode(RING);
-// layer3.set_boundary(900,1000);
+  var layer3 = new PLayer(Ant);
+layer3.mode(RING);
+layer3.set_boundary(900,1000);
 
 }
 
@@ -45,30 +45,28 @@ function Lizard(x,y,animation,pScope){
 }
 
 
-// function Ant(x, y, animation, pScope){
-//   translate(-100,Antline);
-//   translate(0, 100);
-//   fill(54, 26, 28);
-//   ellipse(Antbody+antMoveX,0+antMoveY,20,20);
-//   ellipse(Anthead+antMoveX,0+antMoveY,20,20);
-//   ellipse(Anttail+antMoveX,0+antMoveY,35,20);
+function Ant(x, y, animation, pScope){
+  translate(-100,Antline);
+  translate(0, 100);
+  fill(54, 26, 28);
+  ellipse(Antbody+antMoveX,0+antMoveY,20,20);
+  ellipse(Anthead+antMoveX,0+antMoveY,20,20);
+  ellipse(Anttail+antMoveX,0+antMoveY,35,20);
 
-//  if(animation.frame<0.5){
-//     antMoveY-=20;
-//   }
-//   else{
-//     antMoveY+=20;
-//     // console.log(animation.frame + ": " + antMoveY);
-//   }
+ if(animation.frame<0.5){
+    antMoveY-=20;
+  }
+  else{
+    antMoveY+=20;
+  }
 
-//   antMoveX+=15;
-//   if(animation.frame==0){ 
-//   antMoveX = 0;
-//   //console.log();
-//   }
-//   //console.log(animation.frame + ": " + antMoveX);
+  antMoveX+=15;
+  if(animation.frame==0){ 
+  antMoveX = 0;
+  }
+  
 
-// }
+}
   function Bug(x,y, animation, pScope){
   pScope.draw_image("Bug",x,y);
 
